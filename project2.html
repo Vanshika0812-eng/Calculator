@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/2c36cd0dd6.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.1/math.min.js"></script>
+  <link rel="stylesheet" href="project2.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="container">
+   <div class="calcscreen">
+    <div class="outside">
+      <div id="inside">
+         <input type="text" id="content" disabled>
+    </div>
+  </div>
+  </div>
+  <div class="calcbody">
+    <div><button value="AC" class=" symbol" >AC</button></div>
+        <div><button value="del" class="symbol"  ><i class="fa-solid fa-delete-left"></i></button></div>
+    <div><button value="%" class="symbol"  ><i class="fa-solid fa-percent"></i></button></div>
+    <div><button value="/" class="symbol"  ><i class="fa-solid fa-divide"></i></button></div>
+    <div><button value="7" class="val1" >7</button></div>
+    <div><button value="8" class="val1" >8</button></div>
+    <div><button value="9" class="val1" >9</button></div>
+    <div><button value="*" class="symbol"  ><i class="fa-solid fa-xmark"></i></button></div>
+    <div><button value="4" class="val1"  >4</button></div>
+    <div><button value="5" class="val1" >5</button></div>
+    <div><button value="6" class="val1" >6</button></div>
+    <div><button value="-" class="symbol"  ><i class="fa-solid fa-minus"></i></button></div>
+    <div><button value="1" class="val1" >1</button></div>
+    <div><button value="2" class="val1" >2</button></div>
+    <div><button value="3" class="val1" >3</button></div>
+    <div><button value="+" class="symbol"  ><i class="fa-solid fa-plus"></i></button></div>
+    <div><button value="00" class="val1" >00</button></div>
+    <div><button value="0" class="val1" >0</button></div>
+    <div><button class="val1" value="." >.</button></div>
+    <div><button  id="equal" class="symbol"  value="=" ><i class="fa-solid fa-equals"></i></button></div>
+  </div>
+</div> 
+  <!-- <button id="btn" value="1" onclick="openbtn()">Submit</button> -->
+   <script>
+    let content=document.getElementById("content");
+let btn1=document.getElementsByClassName("val1");
+let btn2=document.getElementsByClassName("symbol");
+for(let btnn of btn1){
+  btnn.addEventListener("click",() =>{
+    let val=btnn.value;
+    content.value+=val;
+});
+}
+for(let bttn of btn2){
+bttn.addEventListener("click",() =>{
+   let val=bttn.value;
+   switch(val){
+    case "AC":
+    content.value="";
+    break;
+    case "del":
+    content.value=content.value.slice(0,-1); /*use of string function*/
+    break;
+    case "+":
+    content.value+="+";
+    break;
+    case "-":
+    content.value+="-";
+    break;
+    case "/":
+    content.value+="/";
+    break;
+    case "*":
+    content.value+="x";
+    break;
+    case "%":
+    content.value+="%";
+    break;
+    case "=":
+    content.value=content.value.replaceAll("x","*");
+    content.value=content.value.replace("%","*100");
+    let calc=math.evaluate(content.value);/*use of math functions*/
+    content.value=calc;
+     default:
+   }
+
+});
+}
+   </script>
+</body>
+</html>
